@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
 
         // Currency format
         CurrencyFormat = (NumberFormatInfo)NumberFormatInfo.CurrentInfo.Clone();
-        CurrencyFormat.CurrencySymbol = "B";
+        CurrencyFormat.CurrencySymbol = "";
         CurrencyFormat.CurrencyDecimalDigits = 0;
     }
 }

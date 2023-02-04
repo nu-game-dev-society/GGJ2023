@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 685482831454221256}
   - component: {fileID: 6021344133283161546}
   - component: {fileID: 3411432826925252672}
+  - component: {fileID: 5001505571911440046}
   m_Layer: 0
   m_Name: Knob
   m_TagString: Untagged
@@ -83,6 +84,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5001505571911440046
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2665666237267059222}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.659764, y: 0.091813214, z: 0.09181317}
+  m_Center: {x: 0, y: 0.0043838434, z: -0.0063234004}
 --- !u!1 &3343961547214842377
 GameObject:
   m_ObjectHideFlags: 0
