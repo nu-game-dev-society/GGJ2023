@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class InteractionController : MonoBehaviour
 {
+    public static InteractionController Instance;
+
     public LayerMask layers;
     public Transform cam;
     public float interactionReach;
@@ -12,6 +14,21 @@ public class InteractionController : MonoBehaviour
     public IInteractable currentInteractable;
     [ColorUsage(true, true)]
     public Color EmissiveColor;
+
+    void Awake()
+    {
+        InitialiseSingleton();
+    }
+
+    void InitialiseSingleton()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(Instance);
+        }
+        Instance = this;
+        Debug.Log("InitialiseInstance");
+    }
 
     void Start()
     {

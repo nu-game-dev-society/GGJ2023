@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    public static NumberFormatInfo CurrencyFormat { get; private set; }
 
     [field: SerializeField]
     public ControlsManager Controls { get; set; }
@@ -35,6 +37,11 @@ public class GameManager : MonoBehaviour
 
     void Initialise()
     {
-        Points = 0;
+        Points = 1000;
+
+        // Currency format
+        CurrencyFormat = (NumberFormatInfo)NumberFormatInfo.CurrentInfo.Clone();
+        CurrencyFormat.CurrencySymbol = "";
+        CurrencyFormat.CurrencyDecimalDigits = 0;
     }
 }

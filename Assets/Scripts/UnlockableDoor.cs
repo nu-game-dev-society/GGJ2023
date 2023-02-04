@@ -6,7 +6,7 @@ using UnityEngine;
 public class UnlockableDoor : MonoBehaviour, IInteractable
 {
     [SerializeField]
-    private int Points = 500;
+    private int Cost = 500;
 
     [SerializeField]
     private Vector3 openAngle;
@@ -15,15 +15,26 @@ public class UnlockableDoor : MonoBehaviour, IInteractable
     private Vector3 closeAngle;
 
     private bool open = false;
+    private bool purchased = false;
     private bool rotating = false;
 
     public void Interact(PlayerController interactor)
     {
-        open = !open;
+        if (!purchased && GameManager.Instance.Points >= Cost)
+        {
+            // Buy the door
+            GameManager.Instance.Points -= Cost;
+            purchased = true;
+        }
 
-        StartCoroutine(DoorRot(open));
+        if (purchased)
+        {
+            open = !open;
 
+            StartCoroutine(DoorRot(open));
+        }
     }
+
     IEnumerator DoorRot(bool open)
     {
         var target = open ? openAngle : closeAngle;
@@ -43,4 +54,14 @@ public class UnlockableDoor : MonoBehaviour, IInteractable
     public bool CanInteract(PlayerController interactor) => !rotating;
 
     public bool ShouldHighlight() => false;
+
+    public string PopupText()
+    {
+        if (!purchased)
+        {
+            return "Buy door for " + Cost.ToString("C", GameManager.CurrencyFormat);
+        }
+
+        return open ? "Close door" : "Open door";
+    }
 }

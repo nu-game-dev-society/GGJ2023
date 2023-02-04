@@ -5,6 +5,8 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 10f;
     public float mouseSensitivity = 100f;
+    public const float RUNSPEED = 15f;
+    public const float WALKSPEED = 10f;
 
     float xRotation = 0f;
 
@@ -19,6 +21,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 look;
     private int health;
     private int damageRate;
+    private bool isSprint;
+    
 
     void Start()
     {
@@ -33,6 +37,7 @@ public class PlayerController : MonoBehaviour
     {
         move = controls.GetMovement();
         look = controls.GetLook();
+        isSprint = controls.GetIsSprinting();
 
     }
 
@@ -52,5 +57,15 @@ public class PlayerController : MonoBehaviour
 
         Vector3 moveDirection = (transform.right * move.x) + (transform.forward * move.y) + Physics.gravity;
         controller.Move(moveDirection * moveSpeed * Time.deltaTime);
+
+        // sprint ability
+        if (isSprint)
+        {
+            moveSpeed = RUNSPEED;
+        }
+        else
+        {
+            moveSpeed = WALKSPEED;
+        }
     }
 }
