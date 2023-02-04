@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 look;
     [SerializeField] 
     private int currentHealth = 100;
+    public int maxHealth = 100;
     private int damageRate;
     private bool isSprint;
 
@@ -54,7 +55,10 @@ public class PlayerController : MonoBehaviour
     public void ResetHealth()
     {
         currentHealth = 100;
+        maxHealth = 100;
     }
+
+
 
     public void TakeDamage(int damageAmount)
     {

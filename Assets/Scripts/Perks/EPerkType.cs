@@ -3,4 +3,5 @@
     GreenPerk,
     RedPerk,
     SprintPerk,
+    HealthPerk,
 }
