@@ -23,10 +23,13 @@ public abstract class PerkBase : MonoBehaviour, IPerk
 
     public Color Color { get; set; }
 
-    // Start is called before the first frame update
     void Awake()
     {
         this.PlayerController = this.gameObject.GetComponent<PlayerController>();
+    }
+
+    void Start()
+    {
         this.PlayerController.AddPerk(this);
     }
 

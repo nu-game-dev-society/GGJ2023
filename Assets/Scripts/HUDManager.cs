@@ -15,7 +15,7 @@ public class HUDManager : MonoBehaviour
     [SerializeField]
     private GameObject blankPerkIconPrefab;
 
-    void Awake()
+    void Start()
     {
         GameManager.Instance.PlayerController.PerksChanged += this.OnPlayerPerksChanged;
     }
