@@ -38,8 +38,8 @@ public class PlayerController : MonoBehaviour
     {
         GetInputs();
 
-        float mouseX = look.x * mouseSensitivity * Time.deltaTime;
-        float mouseY = look.y * mouseSensitivity * Time.deltaTime;
+        float mouseX = look.x * mouseSensitivity;
+        float mouseY = look.y * mouseSensitivity;
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
