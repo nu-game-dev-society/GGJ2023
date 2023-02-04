@@ -21,8 +21,4 @@ public class ControlsManager : MonoBehaviour
     {
         return controls.Gameplay.Look.ReadValue<Vector2>();
     }
-    public bool GetIsSprinting()
-    {
-        return controls.Gameplay.Sprint.ReadValue<float>()>0.5f;
-    }
 }
