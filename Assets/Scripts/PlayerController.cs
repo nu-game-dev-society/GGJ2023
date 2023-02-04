@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public float sprintMultiplier = JOG_SPEED_MULTIPLIER;
     public const float JOG_SPEED_MULTIPLIER = 1.1f;
     float xRotation = 0f;
+    public float healthRegen = 10;
 
     CharacterController controller;
     ControlsManager controls;
@@ -21,10 +22,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Vector2 look;
     [SerializeField] 
-    private int currentHealth = 100;
-    public int maxHealth = 100;
-    private int damageRate;
-    private bool isSprint;
+    private float currentHealth = 100;
+    public float maxHealth = 100;
 
     private readonly HashSet<IPerk> perks = new(new PerkTypeEqualityComparer());
     public struct PerksChangedEventArgs
@@ -57,8 +56,6 @@ public class PlayerController : MonoBehaviour
         currentHealth = 100;
         maxHealth = 100;
     }
-
-
 
     public void TakeDamage(int damageAmount)
     {
@@ -106,6 +103,11 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K))
         {
             TakeDamage(25);
+        }
+
+        if (currentHealth < maxHealth)
+        {
+            currentHealth += healthRegen * Time.deltaTime; 
         }
     }
 
