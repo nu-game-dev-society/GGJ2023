@@ -9,6 +9,7 @@ public interface IInteractable
     void Interact(PlayerController interactor);
     bool CanInteract(PlayerController interactor);
     bool ShouldHighlight();
+    string PopupText();
 }
 public static class InteractableExtensions
 {
