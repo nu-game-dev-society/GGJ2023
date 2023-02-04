@@ -8,6 +8,12 @@ public class UnlockableDoor : MonoBehaviour, IInteractable
     [SerializeField]
     private int Points = 500;
 
+    [SerializeField]
+    private Vector3 openAngle;
+
+    [SerializeField]
+    private Vector3 closeAngle;
+
     private bool open = false;
     private Collider doorCollider;
     private MeshRenderer meshRenderer;
@@ -29,13 +35,10 @@ public class UnlockableDoor : MonoBehaviour, IInteractable
     {
         open = !open;
 
-        // TODO some form of opening animation or smthing
-        doorCollider.enabled = !open;
-        meshRenderer.enabled = !open;
+        transform.localRotation = Quaternion.Euler(!open ? closeAngle : openAngle);
     }
 
-    public bool CanInteract(PlayerController interactor)
-    {
-        return !open;
-    }
+    public bool CanInteract(PlayerController interactor) => true;
+
+    public bool ShouldHighlight() => true;
 }

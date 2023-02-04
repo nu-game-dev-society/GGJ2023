@@ -48,7 +48,7 @@ public class InteractionController : MonoBehaviour
         if (currentInteractable != null)
             UnhighlightInteractable(currentInteractable);
         currentInteractable = interactable;
-        if (currentInteractable != null)
+        if (currentInteractable != null && currentInteractable.ShouldHighlight())
             HighlightInteractable(currentInteractable);
         Debug.Log(currentInteractable);
     }

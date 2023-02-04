@@ -8,6 +8,7 @@ public interface IInteractable
 {
     void Interact(PlayerController interactor);
     bool CanInteract(PlayerController interactor);
+    bool ShouldHighlight();
 }
 public static class InteractableExtensions
 {
