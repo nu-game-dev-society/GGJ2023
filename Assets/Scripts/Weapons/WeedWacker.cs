@@ -51,7 +51,7 @@ public class WeedWacker : Weapon
         }
         else
         {
-            weaponModel.transform.localPosition = Vector3.Lerp(weaponModel.transform.localPosition, startPos, Time.deltaTime * 2.0f);
+            weaponModel.transform.localPosition = Vector3.Lerp(weaponModel.transform.localPosition, startPos, Time.deltaTime * 4.0f);
             currentFuel -= Time.deltaTime;
         }
     }

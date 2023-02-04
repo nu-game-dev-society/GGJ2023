@@ -25,6 +25,7 @@ public abstract class PerkBase : MonoBehaviour, IPerk
     void Awake()
     {
         this.PlayerController = this.gameObject.GetComponent<PlayerController>();
+        this.PlayerController.AddPerk(this);
     }
 
     // Update is called once per frame
