@@ -17,8 +17,7 @@ public class HUDManager : MonoBehaviour
 
     void Awake()
     {
-        this.playerController ??= FindObjectOfType<PlayerController>();
-        this.playerController.PerksChanged += this.OnPlayerPerksChanged;
+        GameManager.Instance.PlayerController.PerksChanged += this.OnPlayerPerksChanged;
     }
 
     private void FixedUpdate()
