@@ -93,5 +93,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Points: 500
-  openAngle: {x: 0, y: 90, z: 0}
+  openAngle: {x: 0, y: 40, z: 0}
   closeAngle: {x: 0, y: 180, z: 0}
