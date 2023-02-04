@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 move;
     [SerializeField]
     private Vector2 look;
+    private int health;
+    private int damageRate;
 
     void Start()
     {
