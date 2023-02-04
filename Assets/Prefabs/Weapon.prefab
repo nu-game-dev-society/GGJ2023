@@ -28,7 +28,7 @@ Transform:
   m_LocalScale: {x: 0.098439, y: 0.098439, z: 0.06}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4154135142874522501}
+  - {fileID: 7686551792341265425}
   m_Father: {fileID: 6220142568988970648}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -87,7 +87,7 @@ MonoBehaviour:
   attackPos: {x: 0, y: 0, z: 0.25}
   startPos: {x: 0, y: 0, z: 0}
   weaponModel: {fileID: 6370767466017898071}
---- !u!1001 &4480178493622961262
+--- !u!1001 &7865157813710474234
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -167,13 +167,13 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: da74c7b0f9606f74c80b305459b97497,
         type: 3}
       propertyPath: m_Name
-      value: weedwacker
+      value: WeedWacker
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da74c7b0f9606f74c80b305459b97497, type: 3}
---- !u!4 &4154135142874522501 stripped
+--- !u!4 &7686551792341265425 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: da74c7b0f9606f74c80b305459b97497,
     type: 3}
-  m_PrefabInstance: {fileID: 4480178493622961262}
+  m_PrefabInstance: {fileID: 7865157813710474234}
   m_PrefabAsset: {fileID: 0}
