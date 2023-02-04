@@ -20,11 +20,22 @@ public class PlayerController : MonoBehaviour
     private Vector2 move;
     [SerializeField]
     private Vector2 look;
-    private int health;
+    [SerializeField] 
+    private int currentHealth = 100;
     private int damageRate;
     private bool isSprint;
 
     private readonly HashSet<IPerk> perks = new(new PerkTypeEqualityComparer());
+    public struct PerksChangedEventArgs
+    {
+        public IPerk NewPerk { get; }
+        public PerksChangedEventArgs(IPerk newPerk)
+        {
+            this.NewPerk = newPerk;
+        }
+    }
+    public delegate void PerksChangedEventHandler(PerksChangedEventArgs args);
+    public PerksChangedEventHandler PerksChanged;
 
     void Start()
     {
@@ -36,6 +47,23 @@ public class PlayerController : MonoBehaviour
 
         GameManager.Instance.Controls.controls.Gameplay.Sprint.performed += Sprint_performed;
         GameManager.Instance.Controls.controls.Gameplay.Sprint.canceled += Sprint_canceled;
+
+        ResetHealth();
+    }
+
+    public void ResetHealth()
+    {
+        currentHealth = 100;
+    }
+
+    public void TakeDamage(int damageAmount)
+    {
+        currentHealth -= damageAmount;
+        
+        if (currentHealth <= 0)
+        {
+            GameManager.Instance.QuitGame();
+        }
     }
 
     private void Sprint_performed(InputAction.CallbackContext obj)
@@ -70,10 +98,16 @@ public class PlayerController : MonoBehaviour
 
         Vector3 moveDirection = (transform.right * move.x) + (transform.forward * move.y) + Physics.gravity;
         controller.Move(moveDirection * moveSpeed * speedMultiplier * Time.deltaTime);
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            TakeDamage(25);
+        }
     }
 
     public void AddPerk(IPerk perk)
     {
         this.perks.Add(perk);
+        this.PerksChanged?.Invoke(new PerksChangedEventArgs(perk));
     }
 }

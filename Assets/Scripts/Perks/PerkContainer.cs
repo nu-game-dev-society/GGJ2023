@@ -5,6 +5,7 @@ using UnityEngine;
 public interface IPerkContainer
 {
     Type ContainedPerkType { get; }
+    Color Color { get; }
 }
 
 public class PerkContainer : MonoBehaviour, IPerkContainer
@@ -17,6 +18,8 @@ public class PerkContainer : MonoBehaviour, IPerkContainer
     };
 
     [field: SerializeField]
+    public Color Color { get; private set; }
+    [SerializeField]
     private EPerkType containedPerkTypeEnum;
     public Type ContainedPerkType => perkTypeDictionary[this.containedPerkTypeEnum];
 }
