@@ -205,4 +205,4 @@ MonoBehaviour:
     m_Bits: 64
   cam: {fileID: 5432417530077519438}
   interactionReach: 1.5
-  EmissiveColor: {r: 0, g: 0, b: 0, a: 0}
+  EmissiveColor: {r: 1, g: 0, b: 0, a: 0}
