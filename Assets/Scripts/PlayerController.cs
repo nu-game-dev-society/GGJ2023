@@ -85,6 +85,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Space)) { Screenshaker.Instance.ShakeOnce(); }
+
         GetInputs();
 
         float mouseX = look.x * mouseSensitivity;
