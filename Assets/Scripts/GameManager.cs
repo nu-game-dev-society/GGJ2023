@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -12,6 +8,9 @@ public class GameManager : MonoBehaviour
 
     [field: SerializeField]
     public ControlsManager Controls { get; set; }
+    [SerializeField]
+    public PlayerController PlayerController { get; private set; }
+
     public int Points { set; get; }
 
     void Awake()
@@ -43,6 +42,9 @@ public class GameManager : MonoBehaviour
         CurrencyFormat = (NumberFormatInfo)NumberFormatInfo.CurrentInfo.Clone();
         CurrencyFormat.CurrencySymbol = "";
         CurrencyFormat.CurrencyDecimalDigits = 0;
+
+        // incase someone forgets to set it
+        this.PlayerController ??= FindObjectOfType<PlayerController>();
     }
 
     public void QuitGame()
