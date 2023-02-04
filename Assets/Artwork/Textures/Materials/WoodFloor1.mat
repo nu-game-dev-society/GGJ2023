@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: WoodFloor1
-  m_Shader: {fileID: -6465566751694194690, guid: 2b28f272d2cac4a899bb697abd92d1cf,
+  m_Shader: {fileID: -6465566751694194690, guid: 4b1ddbc3a6f8b456fadac6b528889804,
     type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -23,7 +23,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Texture:
-        m_Texture: {fileID: 2800000, guid: 3879d5656d5db4727bfbf32ba94d4ded, type: 3}
+        m_Texture: {fileID: 2800000, guid: 63202036af3f44954bbdc7c6bf93ec8f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
