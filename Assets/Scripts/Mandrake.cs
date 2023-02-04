@@ -7,7 +7,14 @@ public class Mandrake : MonoBehaviour, IDamageable
 {
     [SerializeField]
     private float health;
+    [SerializeField]
+    private float attackRate;
+    [SerializeField]
+    private float attackAmount;
+    [SerializeField]
+    private float attackDistance;
 
+    private float nextAttackTime;
     private NavMeshAgent agent;
 
     [SerializeField]
@@ -17,6 +24,19 @@ public class Mandrake : MonoBehaviour, IDamageable
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        nextAttackTime = 0;
+    }
+
+    void Update()
+    {
+        if (Time.time >= nextAttackTime)
+        {
+            nextAttackTime = Time.time + attackRate;
+            if (Vector3.Distance(transform.position, GameManager.Instance.PlayerController.transform.position) <= attackDistance)
+            {
+                GameManager.Instance.PlayerController.TakeDamage(attackAmount);
+            }
+        }
     }
 
     // Update is called once per frame

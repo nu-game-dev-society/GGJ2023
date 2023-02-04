@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamageable
 {
     public float moveSpeed = 10f;
     public float mouseSensitivity = 100f;
@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
         maxHealth = 100;
     }
 
-    public void TakeDamage(int damageAmount)
+    public void TakeDamage(float damageAmount)
     {
         currentHealth -= damageAmount;
         
@@ -85,8 +85,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space)) { Screenshaker.Instance.ShakeOnce(); }
-
         GetInputs();
 
         float mouseX = look.x * mouseSensitivity;
@@ -109,7 +107,7 @@ public class PlayerController : MonoBehaviour
 
         if (currentHealth < maxHealth)
         {
-            currentHealth += healthRegen * Time.deltaTime; 
+            currentHealth += healthRegen * Time.deltaTime;
         }
     }
 
