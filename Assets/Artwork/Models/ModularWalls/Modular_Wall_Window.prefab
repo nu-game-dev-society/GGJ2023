@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1158128191507406885}
   - component: {fileID: 8005482231309527640}
   - component: {fileID: 2087300053303295010}
+  - component: {fileID: 4064242827990422228}
   m_Layer: 0
   m_Name: Modular_Wall_Window
   m_TagString: Untagged
@@ -84,6 +85,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4064242827990422228
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4404166692431184611}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7129494210402856451, guid: 781735c99299b42ea82f197c4f100d55, type: 3}
 --- !u!1001 &7895038573395110935
 PrefabInstance:
   m_ObjectHideFlags: 0
