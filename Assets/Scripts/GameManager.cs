@@ -35,6 +35,6 @@ public class GameManager : MonoBehaviour
 
     void Initialise()
     {
-        
+        Points = 0;
     }
 }

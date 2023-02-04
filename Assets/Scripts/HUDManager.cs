@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
-public class NewBehaviourScript : MonoBehaviour
+public class HUDManager : MonoBehaviour
 {
+    [SerializeField]
+    private TextMeshProUGUI pointsDisplay;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +18,10 @@ public class NewBehaviourScript : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void FixedUpdate()
+    {
+        pointsDisplay.text = GameManager.Instance.Points.ToString();
     }
 }
