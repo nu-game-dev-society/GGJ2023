@@ -26,7 +26,6 @@ public class PerkManager : MonoBehaviour
 
         IPerk perk = this.gameObject.AddComponent(perkType) as IPerk;
 
-        // TODO: MOVE THIS INTO CHARACTER CONTROLLER
         perk.IsActive = true;
     }
 }
