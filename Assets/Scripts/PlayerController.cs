@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     private Vector2 move;
     [SerializeField]
     private Vector2 look;
-    [SerializeField] 
+    [SerializeField]
     private float currentHealth = 100;
     public float maxHealth = 100;
 
@@ -49,6 +49,11 @@ public class PlayerController : MonoBehaviour, IDamageable
         GameManager.Instance.Controls.controls.Gameplay.Sprint.canceled += Sprint_canceled;
 
         ResetHealth();
+    }
+
+    public float GetHealth()
+    {
+        return currentHealth;
     }
 
     public void ResetHealth()

@@ -14,6 +14,8 @@ public class HUDManager : MonoBehaviour
     private GameObject perkIconGroup;
     [SerializeField]
     private GameObject blankPerkIconPrefab;
+    [SerializeField]
+    private Image deathOverlay;
 
     void Start()
     {
@@ -24,6 +26,7 @@ public class HUDManager : MonoBehaviour
     {
         pointsDisplay.text = GameManager.Instance.Points.ToString("C", GameManager.CurrencyFormat);
         popupDisplay.text = InteractionController.Instance.currentInteractable?.PopupText() ?? "";
+        deathOverlay.color = new Color(deathOverlay.color.r, deathOverlay.color.g, deathOverlay.color.b, (1f - (GameManager.Instance.PlayerController.GetHealth() / GameManager.Instance.PlayerController.maxHealth)) * 0.5f);
     }
 
     private void OnPlayerPerksChanged(PlayerController.PerksChangedEventArgs args)
