@@ -22,7 +22,7 @@ public abstract class PerkBase : MonoBehaviour, IPerk
     protected PlayerController PlayerController { get; private set; }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         this.PlayerController = this.gameObject.GetComponent<PlayerController>();
     }
