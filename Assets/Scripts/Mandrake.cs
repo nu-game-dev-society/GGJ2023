@@ -11,6 +11,9 @@ public class Mandrake : MonoBehaviour, IDamageable
     private NavMeshAgent agent;
     private PlayerController player;
 
+    [SerializeField]
+    private ParticleSystem particleSystem;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +31,7 @@ public class Mandrake : MonoBehaviour, IDamageable
     public void TakeDamage(float damage)
     {
         health -= damage;
+        particleSystem.Play();
         if (health <= 0)
         {
             Destroy(gameObject);
