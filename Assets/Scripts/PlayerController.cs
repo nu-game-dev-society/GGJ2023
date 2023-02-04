@@ -5,9 +5,8 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 10f;
     public float mouseSensitivity = 100f;
-    public const float RUNSPEED = 15f;
-    public const float WALKSPEED = 10f;
-
+    public float speedMultiplier = 1f;
+    public const float JOG_SPEED_MULTIPLIER = 1.1f;
     float xRotation = 0f;
 
     CharacterController controller;
@@ -31,13 +30,24 @@ public class PlayerController : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         xRotation = camera.localRotation.x;
+
+        GameManager.Instance.Controls.controls.Gameplay.Sprint.performed += Sprint_performed;
+        GameManager.Instance.Controls.controls.Gameplay.Sprint.canceled += Sprint_canceled;
+    }
+
+    private void Sprint_performed(InputAction.CallbackContext obj)
+    {
+        this.speedMultiplier = JOG_SPEED_MULTIPLIER;
+    }    
+    private void Sprint_canceled(InputAction.CallbackContext obj)
+    {
+        this.speedMultiplier = 1f;
     }
 
     void GetInputs()
     {
         move = controls.GetMovement();
         look = controls.GetLook();
-        isSprint = controls.GetIsSprinting();
 
     }
 
@@ -56,16 +66,6 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(Vector3.up * mouseX);
 
         Vector3 moveDirection = (transform.right * move.x) + (transform.forward * move.y) + Physics.gravity;
-        controller.Move(moveDirection * moveSpeed * Time.deltaTime);
-
-        // sprint ability
-        if (isSprint)
-        {
-            moveSpeed = RUNSPEED;
-        }
-        else
-        {
-            moveSpeed = WALKSPEED;
-        }
+        controller.Move(moveDirection * moveSpeed * speedMultiplier * Time.deltaTime);
     }
 }
