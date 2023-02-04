@@ -21,6 +21,9 @@ public abstract class PerkBase : MonoBehaviour, IPerk
 
     protected PlayerController PlayerController { get; private set; }
 
+    [field: SerializeField]
+    public Color Color { get; set; }
+
     // Start is called before the first frame update
     void Start()
     {

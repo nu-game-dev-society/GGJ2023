@@ -24,6 +24,16 @@ public class PlayerController : MonoBehaviour
     private bool isSprint;
 
     private readonly HashSet<IPerk> perks = new(new PerkTypeEqualityComparer());
+    public struct PerksChangedEventArgs
+    {
+        public IPerk NewPerk { get; }
+        public PerksChangedEventArgs(IPerk newPerk)
+        {
+            this.NewPerk = newPerk;
+        }
+    }
+    public delegate void PerksChangedEventHandler(PerksChangedEventArgs args);
+    public PerksChangedEventHandler PerksChanged;
 
     void Start()
     {
@@ -74,5 +84,6 @@ public class PlayerController : MonoBehaviour
     public void AddPerk(IPerk perk)
     {
         this.perks.Add(perk);
+        this.PerksChanged?.Invoke(new PerksChangedEventArgs(perk));
     }
 }

@@ -10,11 +10,11 @@ public class PerkManager : MonoBehaviour
             return;
         }
 
-        this.AssignPerkToPlayer(perkContainer.ContainedPerkType);
+        this.AssignPerkToPlayer(perkContainer.ContainedPerkType, perkContainer.Color);
         Destroy(other.gameObject);
     }
 
-    private void AssignPerkToPlayer(Type perkType)
+    private void AssignPerkToPlayer(Type perkType, Color color)
     {
 #if DEBUG
         // can't figure out how to do this bit with generics :(
@@ -25,6 +25,7 @@ public class PerkManager : MonoBehaviour
 #endif
 
         IPerk perk = this.gameObject.AddComponent(perkType) as IPerk;
+        perk.Color = color;
 
         perk.IsActive = true;
     }
