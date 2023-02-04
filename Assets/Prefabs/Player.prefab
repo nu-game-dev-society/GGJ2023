@@ -202,6 +202,7 @@ MonoBehaviour:
   moveSpeed: 2
   mouseSensitivity: 0.5
   speedMultiplier: 1
+  sprintMultiplier: 1.1
   camera: {fileID: 5432417530077519438}
   move: {x: 0, y: 0}
   look: {x: 0, y: 0}
@@ -247,11 +248,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2190329991854158793, guid: a44e559df60b33c459b915c1f3028476,
         type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.06
-      objectReference: {fileID: 0}
-    - target: {fileID: 2190329991854158793, guid: a44e559df60b33c459b915c1f3028476,
-        type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.151
       objectReference: {fileID: 0}
@@ -259,11 +255,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.053
-      objectReference: {fileID: 0}
-    - target: {fileID: 2190329991854158793, guid: a44e559df60b33c459b915c1f3028476,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.125
       objectReference: {fileID: 0}
     - target: {fileID: 5311657133554895186, guid: a44e559df60b33c459b915c1f3028476,
         type: 3}
