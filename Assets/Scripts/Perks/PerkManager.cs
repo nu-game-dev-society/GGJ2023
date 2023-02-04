@@ -26,7 +26,6 @@ public class PerkManager : MonoBehaviour
 
         IPerk perk = this.gameObject.AddComponent(perkType) as IPerk;
         perk.Color = color;
-
         perk.IsActive = true;
     }
 }

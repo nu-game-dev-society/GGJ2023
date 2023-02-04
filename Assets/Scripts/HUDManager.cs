@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class HUDManager : MonoBehaviour
@@ -9,22 +8,30 @@ public class HUDManager : MonoBehaviour
     private TextMeshProUGUI pointsDisplay;
     [SerializeField]
     private TextMeshProUGUI popupDisplay;
+    [SerializeField]
+    private PlayerController playerController;
+    [SerializeField]
+    private GameObject perkIconGroup;
+    [SerializeField]
+    private GameObject blankPerkIconPrefab;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        this.playerController ??= FindObjectOfType<PlayerController>();
+        this.playerController.PerksChanged += this.OnPlayerPerksChanged;
     }
 
     private void FixedUpdate()
     {
         pointsDisplay.text = GameManager.Instance.Points.ToString("C", GameManager.CurrencyFormat);
-        popupDisplay.text = InteractionController.Instance.currentInteractable != null ? InteractionController.Instance.currentInteractable.PopupText() : "";
+        popupDisplay.text = InteractionController.Instance.currentInteractable?.PopupText() ?? "";
+    }
+
+    private void OnPlayerPerksChanged(PlayerController.PerksChangedEventArgs args)
+    {
+        GameObject newPerkIcon = Instantiate(blankPerkIconPrefab, perkIconGroup.transform);
+        GameObject juiceBoxPortionOfIcon = newPerkIcon.transform.Find($"JuiceBox").gameObject;
+        RawImage juiceBoxImage = juiceBoxPortionOfIcon.GetComponent<RawImage>();
+        juiceBoxImage.color = args.NewPerk.Color;
     }
 }
