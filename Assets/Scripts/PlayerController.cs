@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,6 +7,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 10f;
     public float mouseSensitivity = 100f;
     public float speedMultiplier = 1f;
+    public float sprintMultiplier = JOG_SPEED_MULTIPLIER;
     public const float JOG_SPEED_MULTIPLIER = 1.1f;
     float xRotation = 0f;
 
@@ -21,7 +23,8 @@ public class PlayerController : MonoBehaviour
     private int health;
     private int damageRate;
     private bool isSprint;
-    
+
+    private readonly HashSet<IPerk> perks = new(new PerkTypeEqualityComparer());
 
     void Start()
     {
@@ -37,7 +40,7 @@ public class PlayerController : MonoBehaviour
 
     private void Sprint_performed(InputAction.CallbackContext obj)
     {
-        this.speedMultiplier = JOG_SPEED_MULTIPLIER;
+        this.speedMultiplier = sprintMultiplier;
     }    
     private void Sprint_canceled(InputAction.CallbackContext obj)
     {
@@ -67,5 +70,10 @@ public class PlayerController : MonoBehaviour
 
         Vector3 moveDirection = (transform.right * move.x) + (transform.forward * move.y) + Physics.gravity;
         controller.Move(moveDirection * moveSpeed * speedMultiplier * Time.deltaTime);
+    }
+
+    public void AddPerk(IPerk perk)
+    {
+        this.perks.Add(perk);
     }
 }
