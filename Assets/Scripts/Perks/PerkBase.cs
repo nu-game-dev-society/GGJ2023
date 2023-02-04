@@ -19,12 +19,12 @@ public abstract class PerkBase : MonoBehaviour, IPerk
     private bool isActive;
     protected abstract void OnIsActiveChanged(bool oldValue, bool newValue);
 
-    protected CharacterController CharacterController { get; private set; }
+    protected PlayerController PlayerController { get; private set; }
 
     // Start is called before the first frame update
     void Start()
     {
-        this.CharacterController = this.gameObject.GetComponent<CharacterController>();
+        this.PlayerController = this.gameObject.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
