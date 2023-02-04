@@ -2,4 +2,5 @@
 {
     GreenPerk,
     RedPerk,
+    SprintPerk,
 }

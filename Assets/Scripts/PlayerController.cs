@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 10f;
     public float mouseSensitivity = 100f;
     public float speedMultiplier = 1f;
+    public float sprintMultiplier = JOG_SPEED_MULTIPLIER;
     public const float JOG_SPEED_MULTIPLIER = 1.1f;
     float xRotation = 0f;
 
@@ -19,7 +20,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 move;
     [SerializeField]
     private Vector2 look;
-    private int health;
+    [SerializeField] 
+    private int currentHealth = 100;
     private int damageRate;
     private bool isSprint;
 
@@ -45,11 +47,28 @@ public class PlayerController : MonoBehaviour
 
         GameManager.Instance.Controls.controls.Gameplay.Sprint.performed += Sprint_performed;
         GameManager.Instance.Controls.controls.Gameplay.Sprint.canceled += Sprint_canceled;
+
+        ResetHealth();
+    }
+
+    public void ResetHealth()
+    {
+        currentHealth = 100;
+    }
+
+    public void TakeDamage(int damageAmount)
+    {
+        currentHealth -= damageAmount;
+        
+        if (currentHealth <= 0)
+        {
+            GameManager.Instance.QuitGame();
+        }
     }
 
     private void Sprint_performed(InputAction.CallbackContext obj)
     {
-        this.speedMultiplier = JOG_SPEED_MULTIPLIER;
+        this.speedMultiplier = sprintMultiplier;
     }    
     private void Sprint_canceled(InputAction.CallbackContext obj)
     {
@@ -79,6 +98,11 @@ public class PlayerController : MonoBehaviour
 
         Vector3 moveDirection = (transform.right * move.x) + (transform.forward * move.y) + Physics.gravity;
         controller.Move(moveDirection * moveSpeed * speedMultiplier * Time.deltaTime);
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            TakeDamage(25);
+        }
     }
 
     public void AddPerk(IPerk perk)

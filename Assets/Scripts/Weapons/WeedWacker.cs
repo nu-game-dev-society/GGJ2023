@@ -9,11 +9,14 @@ public class WeedWacker : Weapon
     private Vector3 attackPos, startPos;
     [SerializeField]
     private Transform weaponModel;
+
+    private float nextFireTime;
     private void Start()
     {
         currentFuel = TotalFuel;
         GameManager.Instance.Controls.controls.Gameplay.Fire.performed += Fire;
         GameManager.Instance.Controls.controls.Gameplay.Fire.canceled += Fire;
+        nextFireTime = 0;
     }
     public void Fire(InputAction.CallbackContext ctx)
     {
@@ -48,6 +51,16 @@ public class WeedWacker : Weapon
         {
             weaponModel.transform.localPosition = Vector3.Lerp(weaponModel.transform.localPosition, attackPos, Time.deltaTime * 6.0f);
             currentFuel -= Time.deltaTime * 5;
+
+            if (Time.time >= nextFireTime)
+            {
+                if (Physics.Raycast(new Ray(Camera.main.transform.position, Camera.main.transform.forward), out RaycastHit hit, Range)
+                    && hit.transform.TryGetComponent(out IDamageable damageable))
+                {
+                    damageable.TakeDamage(Damage);
+                    nextFireTime = Time.time + FireRate;
+                }
+            }
         }
         else
         {

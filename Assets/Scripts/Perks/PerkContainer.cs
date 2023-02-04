@@ -14,6 +14,7 @@ public class PerkContainer : MonoBehaviour, IPerkContainer
     {
         { EPerkType.GreenPerk, typeof(GreenPerk) },
         { EPerkType.RedPerk, typeof(RedPerk) },
+        { EPerkType.SprintPerk, typeof(SprintPerk) },
     };
 
     [field: SerializeField]
