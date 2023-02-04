@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class Mandrake : MonoBehaviour, IDamageable
 {
     [SerializeField]
-    private int health;
+    private float health;
 
     private NavMeshAgent agent;
     private PlayerController player;
@@ -25,7 +25,7 @@ public class Mandrake : MonoBehaviour, IDamageable
         agent.SetDestination(player.transform.position);
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         health -= damage;
         if (health <= 0)
