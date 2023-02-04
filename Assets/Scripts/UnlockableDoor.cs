@@ -15,30 +15,32 @@ public class UnlockableDoor : MonoBehaviour, IInteractable
     private Vector3 closeAngle;
 
     private bool open = false;
-    private Collider doorCollider;
-    private MeshRenderer meshRenderer;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        doorCollider = GetComponent<Collider>();
-        meshRenderer = GetComponent<MeshRenderer>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    private bool rotating = false;
 
     public void Interact(PlayerController interactor)
     {
         open = !open;
 
-        transform.localRotation = Quaternion.Euler(!open ? closeAngle : openAngle);
+        StartCoroutine(DoorRot(open));
+
+    }
+    IEnumerator DoorRot(bool open)
+    {
+        var target = open ? openAngle : closeAngle;
+        var start = transform.localRotation.eulerAngles;
+
+        rotating = true;
+
+        for (float i = 0f; i < 1f; i+= Time.deltaTime)
+        {
+            transform.localRotation = Quaternion.Euler(Vector3.Lerp(start, target, i));
+            yield return null;
+        }
+
+        rotating = false;
     }
 
-    public bool CanInteract(PlayerController interactor) => true;
+    public bool CanInteract(PlayerController interactor) => !rotating;
 
-    public bool ShouldHighlight() => true;
+    public bool ShouldHighlight() => false;
 }
