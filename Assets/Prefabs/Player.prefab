@@ -204,5 +204,5 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   cam: {fileID: 5432417530077519438}
-  interactionReach: 1.5
+  interactionReach: 1.2
   EmissiveColor: {r: 1, g: 0.60401386, b: 0, a: 0}

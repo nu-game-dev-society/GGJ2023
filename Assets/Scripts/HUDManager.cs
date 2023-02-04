@@ -7,6 +7,8 @@ public class HUDManager : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI pointsDisplay;
+    [SerializeField]
+    private TextMeshProUGUI popupDisplay;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +24,7 @@ public class HUDManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        pointsDisplay.text = GameManager.Instance.Points.ToString();
+        pointsDisplay.text = GameManager.Instance.Points.ToString("C", GameManager.CurrencyFormat);
+        popupDisplay.text = InteractionController.Instance.currentInteractable != null ? InteractionController.Instance.currentInteractable.PopupText() : "";
     }
 }
