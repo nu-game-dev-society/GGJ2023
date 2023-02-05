@@ -225,3 +225,5 @@ MonoBehaviour:
   Cost: 500
   openAngle: {x: 0, y: 40, z: 0}
   closeAngle: {x: 0, y: 180, z: 0}
+  purchaseClip: {fileID: 8300000, guid: a957d4a914cd4443fb5b857623dd7652, type: 3}
+  openClip: {fileID: 8300000, guid: 93856c6d1dfe7420183ccff3f07b43a1, type: 3}
