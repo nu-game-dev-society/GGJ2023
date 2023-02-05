@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -8,17 +9,16 @@ public class AudioPool : MonoBehaviour
     public static AudioPool Instance;
     [SerializeField] private AudioSource AudioSourcePrefab;
 
-    private List<AudioSource> audioSources = new List<AudioSource>();
-    private List<AudioSource> active = new List<AudioSource>();
+    private Dictionary<AudioSource, bool> audioSources = new();
     private void Awake()
     {
-        Instance= this;
+        Instance = this;
     }
     void Start()
     {
         for (int i = 0; i < 5; i++)
         {
-            audioSources.Add(Instantiate(AudioSourcePrefab, transform));
+            audioSources.Add(Instantiate(AudioSourcePrefab, transform), false);
         }
     }
 
@@ -28,26 +28,26 @@ public class AudioPool : MonoBehaviour
     }
     private IEnumerator Play(AudioClip clip, Transform t, float pitch, float volume)
     {
-        if (audioSources.Count == 0)
+        var found = audioSources.FirstOrDefault(v => v.Value == false);
+        var a = found.Key;
+        if (a == default)
         {
-            audioSources.Add(Instantiate(AudioSourcePrefab, transform));
+            a = Instantiate(AudioSourcePrefab, transform);
+            audioSources.Add(a, true);
         }
+        else
+            audioSources[a] = true;
 
-        var a = audioSources[0];
-        active.Add(a);
-        audioSources.RemoveAt(0);
         a.clip = clip;
         a.pitch = pitch;
         a.volume = volume;
-        a.transform.parent = t;
-        a.transform.localPosition = Vector3.zero;
+        a.transform.position = t.position;
         a.Play();
 
         yield return new WaitForSeconds(clip.length);
 
-        audioSources.Add(a);
-        a.transform.parent = transform;
-        active.Remove(a);
+        audioSources[a] = false;
 
     }
+
 }

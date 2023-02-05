@@ -130,6 +130,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2584840044723224473, guid: 834ab4324d6d19d4383c188425e11485,
+        type: 3}
+      propertyPath: <PlayerController>k__BackingField
+      value: 
+      objectReference: {fileID: 2054228037}
     - target: {fileID: 2627477157361784733, guid: 834ab4324d6d19d4383c188425e11485,
         type: 3}
       propertyPath: m_RootOrder
@@ -544,11 +549,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7233578643835948247, guid: 15a3d4011e73e384c81885bcf69b2733,
-        type: 3}
-      propertyPath: damageParticles
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7233578643835948270, guid: 15a3d4011e73e384c81885bcf69b2733,
         type: 3}
@@ -1352,6 +1352,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d4142240875eeb4baad9a55b4da19a1, type: 3}
+--- !u!114 &2054228037 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5432417531478522689, guid: fc651ac81df15e4458023d2f64b657e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 957237623}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 928dcebc80a90734080da41dcf695d55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2069068726
 GameObject:
   m_ObjectHideFlags: 0
