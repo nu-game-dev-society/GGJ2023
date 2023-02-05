@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
@@ -9,19 +10,25 @@ public class Spawner : MonoBehaviour
     [SerializeField]
     private GameObject prefabToSpawn;
 
-    private bool shouldSpawn = true;
+    public event ShouldSpawnChangedEventHandler ShouldSpawnChanged;
+    public delegate void ShouldSpawnChangedEventHandler();
+    public bool ShouldSpawn { get; private set; } = true;
     private float spawnRateInSeconds = 1f;
     private readonly List<GameObject> spawnedObjs = new();
+    public ReadOnlyCollection<GameObject> SpawnedObjs => new(this.spawnedObjs);
 
     IEnumerator Spawn()
     {
-        if (this.shouldSpawn)
+        while (true)
         {
-            GameObject spawnedObj = Instantiate(prefabToSpawn, this.GetSpawnLocationInWorldSpace(), Quaternion.identity);
-            this.spawnedObjs.Add(spawnedObj);
-        }
+            if (this.ShouldSpawn)
+            {
+                GameObject spawnedObj = Instantiate(prefabToSpawn, this.GetSpawnLocationInWorldSpace(), Quaternion.identity);
+                this.spawnedObjs.Add(spawnedObj);
+            }
 
-        yield return new WaitForSeconds(this.spawnRateInSeconds);
+            yield return new WaitForSeconds(this.spawnRateInSeconds);
+        }
     }
 
     // Start is called before the first frame update
