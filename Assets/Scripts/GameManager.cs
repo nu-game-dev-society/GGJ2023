@@ -8,10 +8,34 @@ public class GameManager : MonoBehaviour
 
     [field: SerializeField]
     public ControlsManager Controls { get; set; }
-    [SerializeField]
+    [field: SerializeField]
     public PlayerController PlayerController { get; private set; }
 
     public int Points { set; get; }
+
+    public int CurrentRound 
+    {
+        get => this.currentRound;
+        private set
+        {
+            this.currentRound = value;
+            this.RoundChanged?.Invoke();
+        }
+    }
+    private int currentRound = 1;
+    public delegate void RoundChangedEventHandler();
+    public event RoundChangedEventHandler RoundChanged;
+
+
+    public void IncrementRound()
+    {
+        ++this.CurrentRound;
+    }
+
+    public void ResetRounds()
+    {
+        this.CurrentRound = 1;
+    }
 
     void Awake()
     {
@@ -31,7 +55,11 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        
+        // TEMP - remove when we have spawning in place
+        if (Input.GetKeyDown(KeyCode.PageUp))
+        {
+            this.IncrementRound();
+        }
     }
 
     void Initialise()

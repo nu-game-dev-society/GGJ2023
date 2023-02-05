@@ -18,6 +18,10 @@ public class PlayerController : MonoBehaviour, IDamageable
     public Transform camera;
 
     [SerializeField]
+    private AudioSource asFootsteps;
+    [SerializeField] private float stepSpeed = 0.3f;
+    private float nextStepTime = 0f;
+    [SerializeField]
     private Vector2 move;
     [SerializeField]
     private Vector2 look;
@@ -101,8 +105,9 @@ public class PlayerController : MonoBehaviour, IDamageable
         camera.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
         transform.Rotate(Vector3.up * mouseX);
-
+        
         Vector3 moveDirection = (transform.right * move.x) + (transform.forward * move.y) + Physics.gravity;
+
         controller.Move(moveDirection * moveSpeed * speedMultiplier * Time.deltaTime);
 
         if (Input.GetKeyDown(KeyCode.K))
@@ -114,6 +119,15 @@ public class PlayerController : MonoBehaviour, IDamageable
         {
             currentHealth += healthRegen * Time.deltaTime;
         }
+        
+        bool moving = controller.velocity.magnitude > 0.5f;
+        if (moving && Time.time >= nextStepTime)
+        {
+            asFootsteps.pitch = Random.Range(2f, 2.5f);
+            asFootsteps.Play();
+            nextStepTime= Time.time + (stepSpeed / speedMultiplier);
+        }
+
     }
 
     public void AddPerk(IPerk perk)

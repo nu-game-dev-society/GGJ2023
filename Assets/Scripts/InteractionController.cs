@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InteractionController : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class InteractionController : MonoBehaviour
     public IInteractable currentInteractable;
     [ColorUsage(true, true)]
     public Color EmissiveColor;
+
+    private bool use = false;
 
     void Awake()
     {
@@ -33,6 +36,20 @@ public class InteractionController : MonoBehaviour
     void Start()
     {
         this.player = GetComponent<PlayerController>();
+        GameManager.Instance.Controls.controls.Gameplay.Use.performed += Use;
+        GameManager.Instance.Controls.controls.Gameplay.Use.canceled += Use;
+    }
+
+    public void Use(InputAction.CallbackContext ctx)
+    {
+        if (ctx.phase == InputActionPhase.Performed)
+        {
+            use = true;
+        }
+        if (ctx.phase == InputActionPhase.Canceled)
+        {
+            use = false;
+        }
     }
 
     private void Update()
@@ -56,7 +73,7 @@ public class InteractionController : MonoBehaviour
         else if (currentInteractable != null)
             SwitchInteractable(null);
 
-        if (currentInteractable != null && Input.GetKeyDown(KeyCode.E))
+        if (currentInteractable != null && use)
             currentInteractable.Interact(this.player);
     }
 
