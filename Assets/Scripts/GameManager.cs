@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     public delegate void RoundChangedEventHandler();
     public event RoundChangedEventHandler RoundChanged;
     private bool changingRounds;
+    public bool IsChangingRounds => changingRounds;
 
 
     public void IncrementRound()

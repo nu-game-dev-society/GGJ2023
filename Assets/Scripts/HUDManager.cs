@@ -61,6 +61,7 @@ public class HUDManager : MonoBehaviour
         pointsDisplay.text = GameManager.Instance.Points.ToString("C", GameManager.CurrencyFormat);
         popupDisplay.text = InteractionController.Instance.currentInteractable?.PopupText() ?? "";
         deathOverlay.color = new Color(deathOverlay.color.r, deathOverlay.color.g, deathOverlay.color.b, (1f - (GameManager.Instance.PlayerController.GetHealth() / GameManager.Instance.PlayerController.maxHealth)) * 0.5f);
+        roundDisplay.color = GameManager.Instance.IsChangingRounds ? Color.red : Color.white;
     }
 
     private void OnPlayerPerksChanged(PlayerController.PerksChangedEventArgs args)
