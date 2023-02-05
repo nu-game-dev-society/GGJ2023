@@ -100,8 +100,6 @@ public class GameManager : MonoBehaviour
 
     void Initialise()
     {
-        Points = 1000;
-
         // Currency format
         CurrencyFormat = (NumberFormatInfo)NumberFormatInfo.CurrentInfo.Clone();
         CurrencyFormat.CurrencySymbol = "";

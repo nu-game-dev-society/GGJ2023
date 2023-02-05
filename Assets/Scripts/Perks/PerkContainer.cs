@@ -39,5 +39,12 @@ public class PerkContainer : MonoBehaviour, IPerkContainer, IInteractable
 
     public bool ShouldHighlight() => false;
 
-    public string PopupText() => "Drink " + ContainedPerkType.Name.ToLower().Replace("perk", " perk");
+    public string PopupText() => "Drink " + perkNames[ContainedPerkType];
+
+    private static readonly Dictionary<Type, string> perkNames = new()
+    {
+        { typeof(GreenPerk), "Photosyntherise" },
+        { typeof(RedPerk), "Sunny P" },
+        { typeof(SprintPerk), "Speed Growth" },
+    };
 }
