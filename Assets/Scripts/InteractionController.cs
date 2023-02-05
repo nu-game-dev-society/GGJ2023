@@ -9,13 +9,13 @@ public class InteractionController : MonoBehaviour
     public static InteractionController Instance;
 
     public LayerMask layers;
-    public Transform cam;
     public float interactionReach;
     PlayerController player;
     public IInteractable currentInteractable;
     [ColorUsage(true, true)]
     public Color EmissiveColor;
 
+    private Camera mainCamera;
     private bool use = false;
 
     void Awake()
@@ -38,6 +38,7 @@ public class InteractionController : MonoBehaviour
         this.player = GetComponent<PlayerController>();
         GameManager.Instance.Controls.controls.Gameplay.Use.performed += Use;
         GameManager.Instance.Controls.controls.Gameplay.Use.canceled += Use;
+        mainCamera = Camera.main;
     }
 
     public void Use(InputAction.CallbackContext ctx)
@@ -60,7 +61,7 @@ public class InteractionController : MonoBehaviour
         }
 
         if (
-            Physics.Raycast(new Ray(cam.position, cam.forward), out RaycastHit hit, interactionReach, layers)
+            Physics.Raycast(new Ray(mainCamera.transform.position, mainCamera.transform.forward), out RaycastHit hit, interactionReach, layers)
             &&
             hit.transform.TryGetComponent(out IInteractable interactable)
         )
