@@ -18,7 +18,9 @@ public class Mandrake : MonoBehaviour, IDamageable
     private NavMeshAgent agent;
 
     [SerializeField]
-    private ParticleSystem particleSystem;
+    private ParticleSystem damageParticles;
+    [SerializeField]
+    private AudioClip deathClip;
 
     // Start is called before the first frame update
     void Start()
@@ -49,9 +51,10 @@ public class Mandrake : MonoBehaviour, IDamageable
     public void TakeDamage(float damage)
     {
         health -= damage;
-        particleSystem.Play();
+        damageParticles.Play();
         if (health <= 0)
         {
+            AudioPool.Instance?.PlayClip(deathClip, transform);
             Destroy(gameObject);
         }
     }
