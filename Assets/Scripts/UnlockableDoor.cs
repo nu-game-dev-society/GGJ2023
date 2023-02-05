@@ -55,7 +55,7 @@ public class UnlockableDoor : MonoBehaviour, IInteractable
         rotating = false;
     }
 
-    public bool CanInteract(PlayerController interactor) => !rotating;
+    public bool CanInteract(PlayerController interactor) => !open;
 
     public bool ShouldHighlight() => false;
 
