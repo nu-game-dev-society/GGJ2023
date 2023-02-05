@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9083005450784375109}
   - component: {fileID: 5221650318340780612}
   - component: {fileID: 7933290468496828720}
+  - component: {fileID: 6824213608478571652}
   m_Layer: 0
   m_Name: Chair base
   m_TagString: Untagged
@@ -83,6 +84,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6824213608478571652
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5261839639980457410}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0047879163, y: 0.004954112, z: 0.00014175285}
+  m_Center: {x: 0.0016634663, y: -0.0000000011641532, z: 0.0025747807}
 --- !u!1 &5960956250192155462
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,6 +108,7 @@ GameObject:
   - component: {fileID: 8251769712572148619}
   - component: {fileID: 3757693066137745038}
   - component: {fileID: 893476368132601920}
+  - component: {fileID: 5983565997189323542}
   m_Layer: 0
   m_Name: Chair front legs
   m_TagString: Untagged
@@ -166,6 +181,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5983565997189323542
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5960956250192155462}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0044643376, y: 0.0035464927, z: 0.004259955}
+  m_Center: {x: 0.0017979733, y: -9.313226e-10, z: 0.0004037475}
 --- !u!1 &6105844075306342836
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,6 +205,7 @@ GameObject:
   - component: {fileID: 9040477749895645654}
   - component: {fileID: 4945746260681113594}
   - component: {fileID: 9030341090909406020}
+  - component: {fileID: 4134818984196969840}
   m_Layer: 0
   m_Name: Chair back
   m_TagString: Untagged
@@ -249,6 +278,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4134818984196969840
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6105844075306342836}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.00023030024, y: 0.003920878, z: 0.0102078635}
+  m_Center: {x: 0.004076085, y: -9.313226e-10, z: 0.0033786104}
 --- !u!1 &6542556173057726226
 GameObject:
   m_ObjectHideFlags: 0
