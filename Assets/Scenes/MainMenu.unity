@@ -2105,7 +2105,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Rootz
+  m_text: rootZ
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9103423ceae28a24dba590d476f674a3, type: 2}
   m_sharedMaterial: {fileID: -5419823271300125436, guid: 9103423ceae28a24dba590d476f674a3,
