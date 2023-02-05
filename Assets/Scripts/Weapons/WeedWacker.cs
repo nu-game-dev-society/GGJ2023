@@ -7,8 +7,8 @@ public class WeedWacker : Weapon
     bool firing;
     [SerializeField]
     private Vector3 attackPos, startPos;
-    [SerializeField]
-    private Transform weaponModel;
+
+    WeedwackerAnim anim;
 
     private float nextFireTime;
     private void Start()
@@ -17,6 +17,7 @@ public class WeedWacker : Weapon
         GameManager.Instance.Controls.controls.Gameplay.Fire.performed += Fire;
         GameManager.Instance.Controls.controls.Gameplay.Fire.canceled += Fire;
         nextFireTime = 0;
+        anim = GetComponent<WeedwackerAnim>();
     }
     public void Fire(InputAction.CallbackContext ctx)
     {
@@ -49,23 +50,29 @@ public class WeedWacker : Weapon
     {
         if (Firing())
         {
-            weaponModel.transform.localPosition = Vector3.Lerp(weaponModel.transform.localPosition, attackPos, Time.deltaTime * 6.0f);
             currentFuel -= Time.deltaTime * 5;
 
-            if (Time.time >= nextFireTime)
+            if (Physics.Raycast(new Ray(Camera.main.transform.position, Camera.main.transform.forward), out RaycastHit hit, Range)
+                && hit.transform.TryGetComponent(out IDamageable damageable))
             {
-                if (Physics.Raycast(new Ray(Camera.main.transform.position, Camera.main.transform.forward), out RaycastHit hit, Range)
-                    && hit.transform.TryGetComponent(out IDamageable damageable))
+                if (Time.time >= nextFireTime)
                 {
                     damageable.TakeDamage(Damage);
                     nextFireTime = Time.time + FireRate;
                 }
+                anim.Animate(Firing(), hit.distance / Range, true);
+
             }
+            else
+                anim.Animate(Firing(), 1.0f);
+
+
         }
         else
         {
-            weaponModel.transform.localPosition = Vector3.Lerp(weaponModel.transform.localPosition, startPos, Time.deltaTime * 4.0f);
             currentFuel -= Time.deltaTime;
+            anim.Animate(Firing(), 0.0f);
+
         }
     }
 }

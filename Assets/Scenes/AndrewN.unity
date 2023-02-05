@@ -587,10 +587,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 620931850159741112, guid: fc651ac81df15e4458023d2f64b657e2,
+        type: 3}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 620931850159741112, guid: fc651ac81df15e4458023d2f64b657e2,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.399
+      objectReference: {fileID: 0}
+    - target: {fileID: 620931850159741112, guid: fc651ac81df15e4458023d2f64b657e2,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5432417531478522688, guid: fc651ac81df15e4458023d2f64b657e2,
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5432417531478522689, guid: fc651ac81df15e4458023d2f64b657e2,
+        type: 3}
+      propertyPath: stepSpeed
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5432417531478522691, guid: fc651ac81df15e4458023d2f64b657e2,
         type: 3}
@@ -646,6 +666,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7079337221960285501, guid: fc651ac81df15e4458023d2f64b657e2,
+        type: 3}
+      propertyPath: m_Volume
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc651ac81df15e4458023d2f64b657e2, type: 3}
