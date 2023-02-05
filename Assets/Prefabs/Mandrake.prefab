@@ -4873,8 +4873,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 40
-  attackRate: 0.2
-  attackAmount: 5
+  attackRate: 1
+  attackAmount: 10
   attackDistance: 0.5
   damageParticles: {fileID: 8210078103508924255}
   deathClip: {fileID: 8300000, guid: b7467df0c02f148228bfdc3378b3c847, type: 3}
