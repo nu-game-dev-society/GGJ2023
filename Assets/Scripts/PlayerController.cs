@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -76,6 +77,13 @@ public class PlayerController : MonoBehaviour, IDamageable
         asPain.Play();
         if (currentHealth <= 0)
         {
+            if (this.perks.OfType<GreenPerk>().Any())
+            {
+                this.perks.Clear();
+                this.PerksChanged?.Invoke(new PerksChangedEventArgs(null));
+                this.currentHealth = this.maxHealth;
+                return;
+            }
             GameManager.Instance.QuitGame();
         }
     }
@@ -83,7 +91,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     private void Sprint_performed(InputAction.CallbackContext obj)
     {
         this.speedMultiplier = sprintMultiplier;
-    }    
+    }
 
     private void Sprint_canceled(InputAction.CallbackContext obj)
     {

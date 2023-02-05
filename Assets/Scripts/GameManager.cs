@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     [field: SerializeField]
     public PlayerController PlayerController { get; private set; }
 
+    [field: SerializeField]
     public int Points { set; get; }
 
     public int CurrentRound 

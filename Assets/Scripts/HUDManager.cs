@@ -65,6 +65,15 @@ public class HUDManager : MonoBehaviour
 
     private void OnPlayerPerksChanged(PlayerController.PerksChangedEventArgs args)
     {
+        if (args.NewPerk == null)
+        {
+            for (int i = 0; i < this.perkIconGroup.transform.childCount; i++)
+            {
+                Destroy(this.perkIconGroup.transform.GetChild(i).gameObject);
+            }
+            return;
+        }
+
         GameObject newPerkIcon = Instantiate(blankPerkIconPrefab, perkIconGroup.transform);
         GameObject juiceBoxPortionOfIcon = newPerkIcon.transform.Find($"JuiceBox").gameObject;
         RawImage juiceBoxImage = juiceBoxPortionOfIcon.GetComponent<RawImage>();

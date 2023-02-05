@@ -47,8 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07c17640c552f21419c31b8faaccb405, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rooms: []
   <Controls>k__BackingField: {fileID: 977927558102910993}
   <PlayerController>k__BackingField: {fileID: 0}
+  <Points>k__BackingField: 0
 --- !u!114 &977927558102910993
 MonoBehaviour:
   m_ObjectHideFlags: 0
