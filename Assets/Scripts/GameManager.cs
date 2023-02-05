@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Globalization;
 using System.Linq;
 using UnityEngine;
@@ -29,15 +30,23 @@ public class GameManager : MonoBehaviour
     private int currentRound = 0;
     public delegate void RoundChangedEventHandler();
     public event RoundChangedEventHandler RoundChanged;
+    private bool changingRounds;
 
 
     public void IncrementRound()
     {
         ++this.CurrentRound;
+        StartCoroutine(EnableAllUnlockedSpawners());
+    }
+    private IEnumerator EnableAllUnlockedSpawners()
+    {
+        changingRounds = true;
+        yield return new WaitForSeconds(5f);
         foreach (Room room in this.rooms.Where(IsRoomUnlocked))
         {
             this.EnableSpawners(room);
         }
+        changingRounds = false;
     }
 
     public void EnableSpawners(Room room)
@@ -73,7 +82,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (this.rooms.Where(IsRoomUnlocked).All(IsRoomComplete))
+        if (changingRounds == false && this.rooms.Where(IsRoomUnlocked).All(IsRoomComplete))
         {
             this.IncrementRound();
         }

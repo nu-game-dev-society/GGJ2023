@@ -15,6 +15,7 @@ public class TrunkEnemy : MonoBehaviour, IDamageable
         Screenshaker.Instance.ShakeOnce();
         if(Health <= 0)
         {
+            GameManager.Instance.Points += 50;
             Died.Invoke();
         }
     }

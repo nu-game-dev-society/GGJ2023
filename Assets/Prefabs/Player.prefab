@@ -635,7 +635,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   globalPlayerSpotlightColour: {r: 1, g: 1, b: 1, a: 0}
-  globalPlayerSpotlightIntensity: 1.82
+  globalPlayerSpotlightIntensity: 25
   globalPlayerSpotlightDistance: 3.23
 --- !u!1001 &8685637678470203861
 PrefabInstance:
