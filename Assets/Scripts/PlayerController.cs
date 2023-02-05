@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     [SerializeField]
     private AudioSource asFootsteps;
+    [SerializeField]
+    private AudioSource asPain;
     [SerializeField] private float stepSpeed = 0.3f;
     private float nextStepTime = 0f;
     [SerializeField]
@@ -71,7 +73,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     public void TakeDamage(float damageAmount)
     {
         currentHealth -= damageAmount;
-        
+        asPain.Play();
         if (currentHealth <= 0)
         {
             GameManager.Instance.QuitGame();
