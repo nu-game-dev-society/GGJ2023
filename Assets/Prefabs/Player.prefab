@@ -346,6 +346,7 @@ GameObject:
   - component: {fileID: 5432417531478522689}
   - component: {fileID: 3274311264294300870}
   - component: {fileID: 620931850159741112}
+  - component: {fileID: 3310500004507097550}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -404,7 +405,6 @@ MonoBehaviour:
   speedMultiplier: 1
   sprintMultiplier: 1.3
   healthRegen: 10
-  camera: {fileID: 5432417530077519438}
   asFootsteps: {fileID: 620931850159741112}
   stepSpeed: 0.5
   move: {x: 0, y: 0}
@@ -426,7 +426,6 @@ MonoBehaviour:
   layers:
     serializedVersion: 2
     m_Bits: 64
-  cam: {fileID: 5432417530077519438}
   interactionReach: 1.2
   EmissiveColor: {r: 1, g: 0.60401386, b: 0, a: 0}
 --- !u!82 &620931850159741112
@@ -525,6 +524,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3310500004507097550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5432417531478522688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20aaef766dba649e388632daf680dfae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  globalPlayerSpotlightColour: {r: 1, g: 1, b: 1, a: 0}
+  globalPlayerSpotlightIntensity: 1.82
+  globalPlayerSpotlightDistance: 3.23
 --- !u!1001 &8685637678470203861
 PrefabInstance:
   m_ObjectHideFlags: 0
