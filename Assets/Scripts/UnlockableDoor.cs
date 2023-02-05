@@ -18,6 +18,8 @@ public class UnlockableDoor : MonoBehaviour, IInteractable
     private bool purchased = false;
     private bool rotating = false;
 
+    [SerializeField] private AudioClip purchaseClip, openClip;
+
     public void Interact(PlayerController interactor)
     {
         if (!purchased && GameManager.Instance.Points >= Cost)
@@ -25,12 +27,14 @@ public class UnlockableDoor : MonoBehaviour, IInteractable
             // Buy the door
             GameManager.Instance.Points -= Cost;
             purchased = true;
+            AudioPool.Instance.PlayClip(purchaseClip, transform);
         }
 
         if (purchased)
         {
             open = !open;
 
+            AudioPool.Instance.PlayClip(openClip, transform);
             StartCoroutine(DoorRot(open));
         }
     }
@@ -51,7 +55,7 @@ public class UnlockableDoor : MonoBehaviour, IInteractable
         rotating = false;
     }
 
-    public bool CanInteract(PlayerController interactor) => !rotating;
+    public bool CanInteract(PlayerController interactor) => !open;
 
     public bool ShouldHighlight() => false;
 

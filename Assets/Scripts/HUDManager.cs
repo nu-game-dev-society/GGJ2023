@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using UnityEngine.InputSystem;
 
 public class HUDManager : MonoBehaviour
 {
@@ -19,11 +20,14 @@ public class HUDManager : MonoBehaviour
     private GameObject blankPerkIconPrefab;
     [SerializeField]
     private Image deathOverlay;
+    [SerializeField]
+    private GameObject pauseScreen;
 
     void Start()
     {
         GameManager.Instance.PlayerController.PerksChanged += this.OnPlayerPerksChanged;
         GameManager.Instance.RoundChanged += this.OnRoundChanged;
+        GameManager.Instance.Controls.controls.Gameplay.Pause.performed += Pause;
         this.OnRoundChanged();
     }
 
@@ -65,5 +69,17 @@ public class HUDManager : MonoBehaviour
         GameObject juiceBoxPortionOfIcon = newPerkIcon.transform.Find($"JuiceBox").gameObject;
         RawImage juiceBoxImage = juiceBoxPortionOfIcon.GetComponent<RawImage>();
         juiceBoxImage.color = args.NewPerk.Color;
+    }
+
+    public void Pause(InputAction.CallbackContext ctx)
+    {
+        if (ctx.phase == InputActionPhase.Performed)
+        {
+            pauseScreen.SetActive(!pauseScreen.activeSelf);
+
+            GameManager.Instance.PlayerController.enabled = !pauseScreen.activeSelf;
+            InteractionController.Instance.enabled = !pauseScreen.activeSelf;
+            Time.timeScale = pauseScreen.activeSelf ? 0 : 1;
+        }
     }
 }

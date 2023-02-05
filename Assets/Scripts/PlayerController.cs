@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     [SerializeField]
     private AudioSource asFootsteps;
+    [SerializeField]
+    private AudioSource asPain;
     [SerializeField] private float stepSpeed = 0.3f;
     private float nextStepTime = 0f;
     [SerializeField]
@@ -71,7 +73,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     public void TakeDamage(float damageAmount)
     {
         currentHealth -= damageAmount;
-        
+        asPain.Play();
         if (currentHealth <= 0)
         {
             GameManager.Instance.QuitGame();
@@ -82,6 +84,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         this.speedMultiplier = sprintMultiplier;
     }    
+
     private void Sprint_canceled(InputAction.CallbackContext obj)
     {
         this.speedMultiplier = 1f;
@@ -111,11 +114,6 @@ public class PlayerController : MonoBehaviour, IDamageable
         Vector3 moveDirection = (transform.right * move.x) + (transform.forward * move.y) + Physics.gravity;
 
         controller.Move(moveDirection * moveSpeed * speedMultiplier * Time.deltaTime);
-
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            TakeDamage(25);
-        }
 
         if (currentHealth < maxHealth)
         {

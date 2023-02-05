@@ -13,7 +13,7 @@ public class Spawner : MonoBehaviour
     public event ShouldSpawnChangedEventHandler ShouldSpawnChanged;
     public delegate void ShouldSpawnChangedEventHandler();
     public bool ShouldSpawn { get; private set; } = true;
-    private float spawnRateInSeconds = 1f;
+    private float spawnRateInSeconds = 10f;
     private readonly List<GameObject> spawnedObjs = new();
     public ReadOnlyCollection<GameObject> SpawnedObjs => new(this.spawnedObjs);
 
