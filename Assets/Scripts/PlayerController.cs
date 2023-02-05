@@ -82,6 +82,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         this.speedMultiplier = sprintMultiplier;
     }    
+
     private void Sprint_canceled(InputAction.CallbackContext obj)
     {
         this.speedMultiplier = 1f;
@@ -111,11 +112,6 @@ public class PlayerController : MonoBehaviour, IDamageable
         Vector3 moveDirection = (transform.right * move.x) + (transform.forward * move.y) + Physics.gravity;
 
         controller.Move(moveDirection * moveSpeed * speedMultiplier * Time.deltaTime);
-
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            TakeDamage(25);
-        }
 
         if (currentHealth < maxHealth)
         {
