@@ -5234,11 +5234,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3310500004507097550, guid: fc651ac81df15e4458023d2f64b657e2,
-        type: 3}
-      propertyPath: globalPlayerSpotlightIntensity
-      value: 25
-      objectReference: {fileID: 0}
     - target: {fileID: 5432417531478522688, guid: fc651ac81df15e4458023d2f64b657e2,
         type: 3}
       propertyPath: m_Name
@@ -7209,6 +7204,11 @@ PrefabInstance:
       propertyPath: rooms.Array.data[3]
       value: 
       objectReference: {fileID: 1429111163}
+    - target: {fileID: 2584840044723224473, guid: 834ab4324d6d19d4383c188425e11485,
+        type: 3}
+      propertyPath: <Points>k__BackingField
+      value: 10000
+      objectReference: {fileID: 0}
     - target: {fileID: 2627477157361784733, guid: 834ab4324d6d19d4383c188425e11485,
         type: 3}
       propertyPath: m_RootOrder
