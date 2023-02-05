@@ -4876,7 +4876,7 @@ MonoBehaviour:
   attackRate: 0.2
   attackAmount: 5
   attackDistance: 0.5
-  damageParticles: {fileID: 0}
+  damageParticles: {fileID: 8210078103508924255}
   deathClip: {fileID: 8300000, guid: b7467df0c02f148228bfdc3378b3c847, type: 3}
 --- !u!195 &7233578643835948240
 NavMeshAgent:
