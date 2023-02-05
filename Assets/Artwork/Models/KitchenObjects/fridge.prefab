@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6609582902018450720}
   - component: {fileID: 7830621275121766643}
   - component: {fileID: 8794057128798366040}
+  - component: {fileID: 8534370578796841651}
   m_Layer: 0
   m_Name: Fridge
   m_TagString: Untagged
@@ -83,6 +84,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8534370578796841651
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283376290280356906}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0074175578, y: 0.009364688, z: 0.018052744}
+  m_Center: {x: 0.000318098, y: 7.606786e-18, z: 0.004350964}
 --- !u!1 &1492431551131119549
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,6 +108,7 @@ GameObject:
   - component: {fileID: 5791552199733405740}
   - component: {fileID: 2348419009569297086}
   - component: {fileID: 2573322281157475150}
+  - component: {fileID: 3224017560505906592}
   m_Layer: 0
   m_Name: Freezer door
   m_TagString: Untagged
@@ -166,6 +181,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3224017560505906592
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1492431551131119549}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0006741304, y: 0.009063363, z: 0.0074210227}
+  m_Center: {x: -0.0037669009, y: -6.752047e-17, z: -0.0007262025}
 --- !u!1 &2185764647281563076
 GameObject:
   m_ObjectHideFlags: 0
