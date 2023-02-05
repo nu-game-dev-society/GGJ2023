@@ -54,7 +54,7 @@ public class Mandrake : MonoBehaviour, IDamageable
         damageParticles.Play();
         if (health <= 0)
         {
-            AudioPool.Instance?.PlayClip(deathClip, transform);
+            AudioPool.Instance?.PlayClip(deathClip, transform, volume: 1.5f);
             Destroy(gameObject);
         }
     }
