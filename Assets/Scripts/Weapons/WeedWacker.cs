@@ -53,28 +53,22 @@ public class WeedWacker : Weapon
         if (Firing())
         {
             currentFuel -= Time.deltaTime * 5;
-            RaycastHit[] hits = Physics.CapsuleCastAll(mainCamera.transform.position, mainCamera.transform.TransformPoint(mainCamera.transform.forward * Range), 0.1f, mainCamera.transform.forward);
-            for (int i =0; i < hits.Length; ++i)
+
+            if (Physics.Raycast(new Ray(mainCamera.transform.position, mainCamera.transform.forward), out RaycastHit hit, Range)
+                && hit.transform.TryGetComponent(out IDamageable damageable))
             {
-                if (hits[i].transform.TryGetComponent(out IDamageable damageable))
+                if (Time.time >= nextFireTime)
                 {
-                    if (Time.time >= nextFireTime)
-                    {
-                        damageable.TakeDamage(Damage);
-                        nextFireTime = Time.time + FireRate;
-                    }
-
-                    if (i == 0)
-                    {
-                        anim.Animate(Firing(), hits[i].distance / Range, true);
-                    }
+                    damageable.TakeDamage(Damage);
+                    nextFireTime = Time.time + FireRate;
                 }
-            }
+                anim.Animate(Firing(), hit.distance / Range, true);
 
-            if (hits.Length == 0)
-            {
-                anim.Animate(Firing(), 1.0f);
             }
+            else
+                anim.Animate(Firing(), 1.0f);
+
+
         }
         else
         {
