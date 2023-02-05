@@ -80,7 +80,7 @@ public class InteractionController : MonoBehaviour
 
     private void SwitchInteractable(IInteractable interactable)
     {
-        if (currentInteractable != null)
+        if ((currentInteractable as UnityEngine.Object) != null)
             UnhighlightInteractable(currentInteractable);
         currentInteractable = interactable;
         if (currentInteractable != null && currentInteractable.ShouldHighlight())
