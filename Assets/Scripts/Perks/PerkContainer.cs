@@ -2,13 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IPerkContainer
-{
-    Type ContainedPerkType { get; }
-    Color Color { get; }
-}
-
-public class PerkContainer : MonoBehaviour, IPerkContainer
+public class PerkContainer : MonoBehaviour, IPerkContainer, IInteractable
 {
     private static readonly Dictionary<EPerkType, Type> perkTypeDictionary = new Dictionary<EPerkType, Type>
     {
@@ -23,4 +17,27 @@ public class PerkContainer : MonoBehaviour, IPerkContainer
     [SerializeField]
     private EPerkType containedPerkTypeEnum;
     public Type ContainedPerkType => perkTypeDictionary[this.containedPerkTypeEnum];
+
+    public void Interact(PlayerController interactor)
+    {
+#if DEBUG
+        // can't figure out how to do this bit with generics :(
+        if (!typeof(IPerk).IsAssignableFrom(ContainedPerkType))
+        {
+            throw new InvalidOperationException("THAT'S NOT A FKN PERK M8");
+        }
+#endif
+
+        IPerk perk = interactor.gameObject.AddComponent(ContainedPerkType) as IPerk;
+        perk.Color = Color;
+        perk.IsActive = true;
+
+        Destroy(gameObject);
+    }
+
+    public bool CanInteract(PlayerController interactor) => true;
+
+    public bool ShouldHighlight() => false;
+
+    public string PopupText() => "Drink " + ContainedPerkType.Name.ToLower().Replace("perk", " perk");
 }
