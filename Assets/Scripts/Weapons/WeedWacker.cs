@@ -8,7 +8,8 @@ public class WeedWacker : Weapon
     [SerializeField]
     private Vector3 attackPos, startPos;
 
-    WeedwackerAnim anim;
+    private Camera mainCamera;
+    private WeedwackerAnim anim;
 
     private float nextFireTime;
     private void Start()
@@ -18,6 +19,7 @@ public class WeedWacker : Weapon
         GameManager.Instance.Controls.controls.Gameplay.Fire.canceled += Fire;
         nextFireTime = 0;
         anim = GetComponent<WeedwackerAnim>();
+        mainCamera = Camera.main;
     }
     public void Fire(InputAction.CallbackContext ctx)
     {
@@ -52,7 +54,7 @@ public class WeedWacker : Weapon
         {
             currentFuel -= Time.deltaTime * 5;
 
-            if (Physics.Raycast(new Ray(Camera.main.transform.position, Camera.main.transform.forward), out RaycastHit hit, Range)
+            if (Physics.Raycast(new Ray(mainCamera.transform.position, mainCamera.transform.forward), out RaycastHit hit, Range)
                 && hit.transform.TryGetComponent(out IDamageable damageable))
             {
                 if (Time.time >= nextFireTime)

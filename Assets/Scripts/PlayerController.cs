@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     CharacterController controller;
     ControlsManager controls;
 
-    public Transform camera;
+    public Transform playerCamera;
 
     [SerializeField]
     private AudioSource asFootsteps;
@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         controls = GameManager.Instance.Controls;
 
         Cursor.lockState = CursorLockMode.Locked;
-        xRotation = camera.localRotation.x;
+        xRotation = playerCamera.localRotation.x;
 
         GameManager.Instance.Controls.controls.Gameplay.Sprint.performed += Sprint_performed;
         GameManager.Instance.Controls.controls.Gameplay.Sprint.canceled += Sprint_canceled;
@@ -102,7 +102,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        camera.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        playerCamera.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
         transform.Rotate(Vector3.up * mouseX);
         
