@@ -6,6 +6,9 @@ using UnityEngine;
 public class UnlockableDoor : MonoBehaviour, IInteractable
 {
     [SerializeField]
+    private Room room;
+
+    [SerializeField]
     private int Cost = 500;
 
     [SerializeField]
@@ -14,6 +17,7 @@ public class UnlockableDoor : MonoBehaviour, IInteractable
     [SerializeField]
     private Vector3 closeAngle;
 
+    public bool IsOpen => this.open;
     private bool open = false;
     private bool purchased = false;
     private bool rotating = false;
@@ -25,6 +29,7 @@ public class UnlockableDoor : MonoBehaviour, IInteractable
             // Buy the door
             GameManager.Instance.Points -= Cost;
             purchased = true;
+            GameManager.Instance.EnableSpawners(room);
         }
 
         if (purchased)

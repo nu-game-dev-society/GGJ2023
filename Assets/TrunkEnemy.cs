@@ -6,8 +6,8 @@ using UnityEngine.Events;
 public class TrunkEnemy : MonoBehaviour, IDamageable
 {
     [SerializeField]
-    private float Health = 1000.0f;
-
+    private float Health = 100.0f;
+    public bool IsAlive => this.Health > 0;
     public UnityEvent Died = new UnityEvent();
     public void TakeDamage(float damage)
     {
@@ -17,5 +17,10 @@ public class TrunkEnemy : MonoBehaviour, IDamageable
         {
             Died.Invoke();
         }
+    }
+    public void ResetEnemy()
+    {
+        Health = 100.0f;
+        gameObject.SetActive(true);
     }
 }

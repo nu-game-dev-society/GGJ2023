@@ -1,10 +1,14 @@
 using System.Globalization;
+using System.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public static NumberFormatInfo CurrencyFormat { get; private set; }
+
+    [SerializeField]
+    private Room[] rooms;
 
     [field: SerializeField]
     public ControlsManager Controls { get; set; }
@@ -22,7 +26,7 @@ public class GameManager : MonoBehaviour
             this.RoundChanged?.Invoke();
         }
     }
-    private int currentRound = 1;
+    private int currentRound = 0;
     public delegate void RoundChangedEventHandler();
     public event RoundChangedEventHandler RoundChanged;
 
@@ -30,17 +34,31 @@ public class GameManager : MonoBehaviour
     public void IncrementRound()
     {
         ++this.CurrentRound;
+        foreach (Room room in this.rooms.Where(IsRoomUnlocked))
+        {
+            this.EnableSpawners(room);
+        }
+    }
+
+    public void EnableSpawners(Room room)
+    {
+        foreach (Spawner spawner in room.Spawners)
+        {
+            spawner.SetShouldSpawn(true);
+        }
     }
 
     public void ResetRounds()
     {
-        this.CurrentRound = 1;
+        this.CurrentRound = 0;
+        this.IncrementRound();
     }
 
     void Awake()
     {
         InitialiseSingleton();
         Initialise();
+        ResetRounds();
     }
 
     void InitialiseSingleton()
@@ -55,11 +73,20 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        // TEMP - remove when we have spawning in place
-        if (Input.GetKeyDown(KeyCode.PageUp))
+        if (this.rooms.Where(IsRoomUnlocked).All(IsRoomComplete))
         {
             this.IncrementRound();
         }
+    }
+
+    private bool IsRoomUnlocked(Room room)
+    {
+        return !room.Doors.Any() || room.Doors.Any(door => door.IsOpen);
+    }
+    private bool IsRoomComplete(Room room)
+    {
+        // if they all should NOT spawn, room is complete
+        return room.Spawners.All(spawner => !spawner.ShouldSpawn);
     }
 
     void Initialise()
