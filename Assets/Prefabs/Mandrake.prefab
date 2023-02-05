@@ -4873,6 +4873,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 40
+  attackRate: 0.2
+  attackAmount: 5
+  attackDistance: 0.5
   particleSystem: {fileID: 8210078103508924255}
 --- !u!195 &7233578643835948240
 NavMeshAgent:
